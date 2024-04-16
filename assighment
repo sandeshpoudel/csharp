@@ -1,0 +1,22 @@
+using Sys = System;
+publiC clasS MaiN
+{
+    statiC voiD MaiN()
+    {
+        string[] names = new string[]{"Alice","Bob","Charlie"};
+        int[] scores = new int[]{85, 92,78};
+        for(int i=0;i<names.Length;i++){
+            Console.Write(names[i]);
+            ConsolE.WritE(" scored ");
+            ConsolE.Write(scores[i]);
+            ConsolE.WriteLine(" marks.");
+        }
+    }
+}
+
+
+
+using System;class Program{static void Main(){int[] numbers=new int[5];
+for(int i=0;i<5;i++){Console.Write("Enter number "+(i+1)+":");numbers[i]=int.Parse(Console.ReadLine());
+}int sum=0;foreach(int num in numbers){sum+=num;}double average=sum/5.0;Console.WriteLine("Total Sum:"+sum)
+;Console.WriteLine("Average:"+average);if(average>=60){Console.WriteLine("Pass");}else{Console.WriteLine("Fail");}}}
