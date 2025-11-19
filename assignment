@@ -1,22 +1,82 @@
-using Sys = System;
-publiC clasS MaiN
+using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+class Demo
 {
-    statiC voiD MaiN()
+    static void Main()
     {
-        string[] names = new string[]{"Alice","Bob","Charlie"};
-        int[] scores = new int[]{85, 92,78};
-        for(int i=0;i<names.Length;i++){
-            Console.Write(names[i]);
-            ConsolE.WritE(" scored ");
-            ConsolE.Write(scores[i]);
-            ConsolE.WriteLine(" marks.");
-        }
+
+        string connString = "Server=DESKTOP-EVK61PN;Database=newdb;Trusted_Connection=True;TrustServerCertificate=True; ";
+
+        SqlConnection conn = new SqlConnection(connString);
+        conn.Open();
+        //--------------------------------6.4 ExecuteReader() to display----------------------------------------
+        //SqlCommand merocommandToDisplayNooporFriends = new SqlCommand("SELECT * from friends", conn);
+        //SqlDataReader peader = merocommandToDisplayNooporFriends.ExecuteReader();
+
+        //while (peader.Read())
+        //{
+        //    Console.WriteLine(peader["name"]);     //database table column name here..
+        //    Console.WriteLine(peader["phone"]);  
+        //    Console.WriteLine(peader["address"]);  
+        //}
+        //Console.WriteLine("Connected!");
+        //--------------------------------6.4 ExecuteNonQuery() to insert, update, delete------------------------
+
+
+        //string query = "insert into friends (name, phone, address) values('Sailesh',9898,'suryapur')";
+        //SqlCommand command = new SqlCommand(query, conn);
+        //command.ExecuteNonQuery(); //ExecuteNonQuery is used for Insert, Update, Delete
+
+        //--------------------------------6.4 ExecuteScalar() -----------------------------------------------------------------
+        //ExecuteScalar() - Simple Definition
+
+        //    ExecuteScalar() is a method in ADO.NET that executes a SQL query and returns only the 
+        //    first column of the first row from the result set.It's commonly used for 
+        //    retrieving single values like counts, sums, or specific column values.
+
+
+
+        string sql = "SELECT Title FROM tasks";
+        SqlCommand cmd = new SqlCommand(sql, conn);
+        object result = cmd.ExecuteScalar();
+        Console.WriteLine(result);
+
+
+        //if (result != null)
+        //{
+        //    string title = result.ToString();
+        //    Console.WriteLine($"First task title: {title}");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("No tasks found or Title is NULL");
+        //}
+
+        //alternate way to show the output:-----------
+        //string title = (string)cmd.ExecuteScalar();
+        //Console.WriteLine(result);
+
+        conn.Close();
+
+
+
+
+    //    Key Points:
+
+    //Returns only one value(first column of first row)
+
+    //Returns null if no results found
+
+    //Use for aggregate functions (COUNT, SUM, MAX, etc.)
+
+    //Faster than ExecuteReader() when you need only one value
+
+    //Returns object type, so you need to cast it to appropriate data type
+
+
     }
 }
-
-
-
-using System;class Program{static void Main(){int[] numbers=new int[5];
-for(int i=0;i<5;i++){Console.Write("Enter number "+(i+1)+":");numbers[i]=int.Parse(Console.ReadLine());
-}int sum=0;foreach(int num in numbers){sum+=num;}double average=sum/5.0;Console.WriteLine("Total Sum:"+sum)
-;Console.WriteLine("Average:"+average);if(average>=60){Console.WriteLine("Pass");}else{Console.WriteLine("Fail");}}}
